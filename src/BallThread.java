@@ -12,7 +12,7 @@ public class BallThread extends Thread {
     public void run() {
         int i = 0;
         try {
-            while (!stop || i > MAXITER) {
+            while (!stop && i < MAXITER) {
                 if (b.move()) {
                     System.out.println("Thread name = "
                             + Thread.currentThread().getName() + " was stopped! Priority: "+ Thread.currentThread().getPriority());
