@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 public class BounceFrame extends JFrame {
     private BallCanvas canvas;
+    private Color ballColorRed = Color.red;
+    private Color ballColorBlue = Color.blue;
     private int startClick = 0;
     public static final int WIDTH = 480;
     public static final int HEIGHT = 350;
@@ -21,21 +23,41 @@ public class BounceFrame extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(Color.lightGray);
         JLabel counterText = new JLabel("In pocket: 0");
-        JButton buttonStart = new JButton("Start");
+        JButton buttonRed = new JButton("Add Red");
+        JButton buttonBlue = new JButton("Add Blue");
         JButton buttonStop = new JButton("Stop");
-        buttonStart.addActionListener(new ActionListener() {
+        buttonRed.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (startClick == 0) {
                     canvas.makePockets();
-
                 }
 
-                Ball b = new Ball(canvas);
+                Ball b = new Ball(canvas, ballColorRed);
                 canvas.add(b);
 
                 BallThread thread = new BallThread(b);
+                thread.setPriority(10);
+                thread.start();
+                System.out.println("Thread name = " +
+                        thread.getName());
+                startClick++;
+            }
+        });
+        buttonBlue.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (startClick == 0) {
+                    canvas.makePockets();
+                }
+
+                Ball b = new Ball(canvas, ballColorBlue);
+                canvas.add(b);
+
+                BallThread thread = new BallThread(b);
+                thread.setPriority(1);
                 thread.start();
                 System.out.println("Thread name = " +
                         thread.getName());
@@ -60,7 +82,8 @@ public class BounceFrame extends JFrame {
         t1.start();
         
         buttonPanel.add(counterText);
-        buttonPanel.add(buttonStart);
+        buttonPanel.add(buttonRed);
+        buttonPanel.add(buttonBlue);
         buttonPanel.add(buttonStop);
 
         content.add(buttonPanel, BorderLayout.SOUTH);

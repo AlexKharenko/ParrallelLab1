@@ -12,12 +12,12 @@ public class BallCanvas extends JPanel {
     }
 
     public void makePockets() {
-        pockets.add(new Pocket(0, 0));
+        // pockets.add(new Pocket(0, 0));
         pockets.add(new Pocket(this.getWidth() / 2 - 30, 0));
-        pockets.add(new Pocket(this.getWidth() - 30, 0));
-        pockets.add(new Pocket(0, this.getHeight() - 30));
-        pockets.add(new Pocket(this.getWidth() / 2 - 30, this.getHeight() - 30));
-        pockets.add(new Pocket(this.getWidth() - 30, this.getHeight() - 30));
+        // pockets.add(new Pocket(this.getWidth() - 30, 0));
+        // pockets.add(new Pocket(0, this.getHeight() - 30));
+        // pockets.add(new Pocket(this.getWidth() / 2 - 30, this.getHeight() - 30));
+        // pockets.add(new Pocket(this.getWidth() - 30, this.getHeight() - 30));
     }
 
     public boolean ballDropped(Ball b) {

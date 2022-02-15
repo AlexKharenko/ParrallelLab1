@@ -1,10 +1,10 @@
 import java.util.ArrayList;
-import java.util.Random;
 import java.awt.geom.*;
 import java.awt.*;
 
 class Ball {
     private BallCanvas canvas;
+    private Color ball_color;
     private static final int XSIZE = 20;
     private static final int YSIZE = 20;
     private int x = 0;
@@ -14,14 +14,15 @@ class Ball {
 
     public Ball(BallCanvas c) {
         this.canvas = c;
+        x = this.canvas.getWidth() / 2 - XSIZE;
+        y = this.canvas.getHeight() / 2 - YSIZE;
+    }
 
-        if (Math.random() < 0.5) {
-            x = new Random().nextInt(this.canvas.getWidth());
-            y = 0;
-        } else {
-            x = 0;
-            y = new Random().nextInt(this.canvas.getHeight());
-        }
+    public Ball(BallCanvas c, Color color) {
+        this.canvas = c;
+        this.ball_color = color;
+        x = this.canvas.getWidth() / 2 - XSIZE;
+        y = this.canvas.getHeight() / 2 - YSIZE;
     }
 
     public boolean hasDropped(ArrayList<Pocket> pockets) {
@@ -39,7 +40,7 @@ class Ball {
     }
 
     public void draw(Graphics2D g2) {
-        g2.setColor(Color.darkGray);
+        g2.setColor(ball_color);
         g2.fill(new Ellipse2D.Double(x, y, XSIZE, YSIZE));
 
     }

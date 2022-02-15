@@ -15,11 +15,11 @@ public class BallThread extends Thread {
             while (!stop || i > MAXITER) {
                 if (b.move()) {
                     System.out.println("Thread name = "
-                            + Thread.currentThread().getName() + " was stopped!");
+                            + Thread.currentThread().getName() + " was stopped! Priority: "+ Thread.currentThread().getPriority());
                     stop = true;
                 }
                 // System.out.println("Thread name = "
-                // + Thread.currentThread().getName());
+                // + Thread.currentThread().getName()+" "+ Thread.currentThread().getPriority());
                 Thread.sleep(5);
                 i++;
             }
