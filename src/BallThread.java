@@ -22,7 +22,7 @@ public class BallThread extends Thread {
                 block_thread.join();
                 block_thread = null;
             }
-                while (!stop || i > MAXITER) {
+                while (!stop && i > MAXITER) {
                     if (b.move()) {
                         System.out.println("Thread name = "
                                 + Thread.currentThread().getName() + " was stopped!");

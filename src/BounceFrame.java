@@ -24,6 +24,26 @@ public class BounceFrame extends JFrame {
         JLabel counterText = new JLabel("In pocket: 0");
         JButton buttonStart = new JButton("Start");
         JButton buttonStop = new JButton("Stop");
+        JButton buttonSymbolOut1 = new JButton("Symbols out 1");
+
+        buttonSymbolOut1.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Symbol stick = new Symbol("|");
+                Symbol dash = new Symbol("-");
+
+                SymbolThread thread1 = new SymbolThread(stick);
+                SymbolThread thread2 = new SymbolThread(dash);
+                thread1.start();
+                thread2.start();
+                System.out.println("Thread name = " +
+                        thread1.getName());
+                System.out.println("Thread name = " +
+                        thread2.getName());
+            }
+        });
+
         buttonStart.addActionListener(new ActionListener() {
 
             @Override
@@ -62,6 +82,7 @@ public class BounceFrame extends JFrame {
         t1.start();
 
         buttonPanel.add(counterText);
+        buttonPanel.add(buttonSymbolOut1);
         buttonPanel.add(buttonStart);
         buttonPanel.add(buttonStop);
 
