@@ -23,28 +23,8 @@ public class BounceFrame extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(Color.lightGray);
         JLabel counterText = new JLabel("In pocket: 0");
-        // JButton buttonRed = new JButton("Add Red");
         JButton buttonBlue = new JButton("Exper");
         JButton buttonStop = new JButton("Stop");
-        // buttonRed.addActionListener(new ActionListener() {
-
-        // @Override
-        // public void actionPerformed(ActionEvent e) {
-        // if (startClick == 0) {
-        // canvas.makePockets();
-        // }
-
-        // Ball b = new Ball(canvas, ballColorRed);
-        // canvas.add(b);
-
-        // BallThread thread = new BallThread(b);
-        // thread.setPriority(10);
-        // thread.start();
-        // System.out.println("Thread name = " +
-        // thread.getName());
-        // startClick++;
-        // }
-        // });
         buttonBlue.addActionListener(new ActionListener() {
 
             @Override
@@ -94,7 +74,6 @@ public class BounceFrame extends JFrame {
         t1.start();
 
         buttonPanel.add(counterText);
-        // buttonPanel.add(buttonRed);
         buttonPanel.add(buttonBlue);
         buttonPanel.add(buttonStop);
 
