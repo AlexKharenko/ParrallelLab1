@@ -28,22 +28,22 @@ public class BounceFrame extends JFrame {
         JButton buttonStop = new JButton("Stop");
         // buttonRed.addActionListener(new ActionListener() {
 
-        //     @Override
-        //     public void actionPerformed(ActionEvent e) {
-        //         if (startClick == 0) {
-        //             canvas.makePockets();
-        //         }
+        // @Override
+        // public void actionPerformed(ActionEvent e) {
+        // if (startClick == 0) {
+        // canvas.makePockets();
+        // }
 
-        //         Ball b = new Ball(canvas, ballColorRed);
-        //         canvas.add(b);
+        // Ball b = new Ball(canvas, ballColorRed);
+        // canvas.add(b);
 
-        //         BallThread thread = new BallThread(b);
-        //         thread.setPriority(10);
-        //         thread.start();
-        //         System.out.println("Thread name = " +
-        //                 thread.getName());
-        //         startClick++;
-        //     }
+        // BallThread thread = new BallThread(b);
+        // thread.setPriority(10);
+        // thread.start();
+        // System.out.println("Thread name = " +
+        // thread.getName());
+        // startClick++;
+        // }
         // });
         buttonBlue.addActionListener(new ActionListener() {
 
@@ -52,14 +52,9 @@ public class BounceFrame extends JFrame {
                 if (startClick == 0) {
                     canvas.makePockets();
                 }
-                Ball b = new Ball(canvas, ballColorRed);
-                canvas.add(b);
+                Ball b;
 
-                BallThread thread = new BallThread(b);
-                thread.setPriority(10);
-                thread.start();
-                System.out.println("Thread name = " +
-                        thread.getName());
+                BallThread thread;
                 for (int i = 0; i < 1000; i++) {
                     b = new Ball(canvas, ballColorBlue);
                     canvas.add(b);
@@ -70,7 +65,14 @@ public class BounceFrame extends JFrame {
                     System.out.println("Thread name = " +
                             thread.getName());
                 }
+                b = new Ball(canvas, ballColorRed);
+                canvas.add(b);
 
+                thread = new BallThread(b);
+                thread.setPriority(10);
+                thread.start();
+                System.out.println("Thread name = " +
+                        thread.getName());
                 startClick++;
             }
         });
