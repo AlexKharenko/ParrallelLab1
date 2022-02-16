@@ -4,7 +4,11 @@ public class Symbol {
         this.symbol = symbol;
     }
 
-    public void PrintSymbols(){
+    public String getSymbol(){
+       return symbol;
+    }
+
+    public void printSymbol(){
         System.out.print(symbol);
     }
 }

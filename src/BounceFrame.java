@@ -25,16 +25,38 @@ public class BounceFrame extends JFrame {
         JButton buttonStart = new JButton("Start");
         JButton buttonStop = new JButton("Stop");
         JButton buttonSymbolOut1 = new JButton("Symbols out 1");
+        JButton buttonSymbolOut2 = new JButton("Symbols out 2");
 
         buttonSymbolOut1.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                Printer printer = new Printer();
                 Symbol stick = new Symbol("|");
                 Symbol dash = new Symbol("-");
 
-                SymbolThread thread1 = new SymbolThread(stick);
-                SymbolThread thread2 = new SymbolThread(dash);
+                SymbolThread thread1 = new SymbolThread(stick, printer);
+                SymbolThread thread2 = new SymbolThread(dash, printer);
+                thread1.start();
+                thread2.start();
+                System.out.println("Thread name = " +
+                        thread1.getName());
+                System.out.println("Thread name = " +
+                        thread2.getName());
+            }
+        }); 
+        
+        buttonSymbolOut2.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Boolean sync = true;
+                Printer printer = new Printer();
+                Symbol stick = new Symbol("|");
+                Symbol dash = new Symbol("-");
+
+                SymbolThread thread1 = new SymbolThread(stick, printer, sync);
+                SymbolThread thread2 = new SymbolThread(dash, printer, sync);
                 thread1.start();
                 thread2.start();
                 System.out.println("Thread name = " +
@@ -83,6 +105,7 @@ public class BounceFrame extends JFrame {
 
         buttonPanel.add(counterText);
         buttonPanel.add(buttonSymbolOut1);
+        buttonPanel.add(buttonSymbolOut2);
         buttonPanel.add(buttonStart);
         buttonPanel.add(buttonStop);
 
