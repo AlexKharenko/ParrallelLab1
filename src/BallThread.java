@@ -20,7 +20,7 @@ public class BallThread extends Thread {
                 }
                 // System.out.println("Thread name = "
                 // + Thread.currentThread().getName()+" "+ Thread.currentThread().getPriority());
-                Thread.sleep(5);
+                Thread.sleep(1);
                 i++;
             }
         } catch (InterruptedException ex) {
