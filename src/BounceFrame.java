@@ -21,22 +21,16 @@ public class BounceFrame extends JFrame {
         content.add(this.canvas, BorderLayout.CENTER);
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(Color.lightGray);
-        JLabel counterText = new JLabel("In pocket: 0");
-        JButton buttonStart = new JButton("Start");
         JButton buttonStop = new JButton("Stop");
-        JButton buttonSymbolOut1 = new JButton("Symbols out 1");
-        JButton buttonSymbolOut2 = new JButton("Symbols out 2");
+        JButton buttonSymbolOut1 = new JButton("Def count");
 
         buttonSymbolOut1.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Printer printer = new Printer();
-                Symbol stick = new Symbol("|");
-                Symbol dash = new Symbol("-");
-
-                SymbolThread thread1 = new SymbolThread(stick, printer);
-                SymbolThread thread2 = new SymbolThread(dash, printer);
+                Counter counter = new Counter();
+                CounterThread thread1 = new CounterThread(counter);
+                CounterThread thread2 = new CounterThread(counter, false);
                 thread1.start();
                 thread2.start();
                 System.out.println("Thread name = " +
@@ -45,46 +39,6 @@ public class BounceFrame extends JFrame {
                         thread2.getName());
             }
         }); 
-        
-        buttonSymbolOut2.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Boolean sync = true;
-                Printer printer = new Printer();
-                Symbol stick = new Symbol("|");
-                Symbol dash = new Symbol("-");
-
-                SymbolThread thread1 = new SymbolThread(stick, printer, sync);
-                SymbolThread thread2 = new SymbolThread(dash, printer, sync);
-                thread1.start();
-                thread2.start();
-                System.out.println("Thread name = " +
-                        thread1.getName());
-                System.out.println("Thread name = " +
-                        thread2.getName());
-            }
-        });
-
-        buttonStart.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (startClick == 0) {
-                    canvas.makePockets();
-                }
-
-                Ball b = new Ball(canvas, RandomColor.getRandomColor());
-                canvas.add(b);
-
-                BallThread thread = new BallThread(b, last_thread);
-                thread.start();
-                last_thread = thread;
-                System.out.println("Thread name = " +
-                        thread.getName());
-                startClick++;
-            }
-        });
 
         buttonStop.addActionListener(new ActionListener() {
             @Override
@@ -94,19 +48,7 @@ public class BounceFrame extends JFrame {
             }
         });
 
-        ActionListener l1 = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                counterText.setText("In pocket " + canvas.getBallsDroppedNumber());
-            }
-        };
-        Timer t1 = new Timer(10, l1);
-        t1.start();
-
-        buttonPanel.add(counterText);
         buttonPanel.add(buttonSymbolOut1);
-        buttonPanel.add(buttonSymbolOut2);
-        buttonPanel.add(buttonStart);
         buttonPanel.add(buttonStop);
 
         content.add(buttonPanel, BorderLayout.SOUTH);
