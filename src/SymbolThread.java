@@ -19,22 +19,18 @@ public class SymbolThread extends Thread {
     @Override
     public void run() {
         int i = 0;
-        try {
-            while (i < MAXITER) {
-                try {
-                    if (sync) {
-                        printer.printSymbolsSync(symbol);
-                    } else {
-                        printer.printSymbols(symbol);
-                    }
-                } catch (Exception e) {
+        while (i < MAXITER) {
+            try {
+                if (sync) {
+                    printer.printSymbolsSync(symbol);
+                } else {
+                    printer.printSymbols(symbol);
                 }
-                // System.out.println("Thread name = "
-                // + Thread.currentThread().getName());
-                Thread.sleep(5);
-                i++;
+            } catch (Exception e) {
             }
-        } catch (InterruptedException ex) {
+            // System.out.println("Thread name = "
+            // + Thread.currentThread().getName());
+            i++;
         }
     }
 }
